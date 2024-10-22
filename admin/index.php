@@ -31,18 +31,28 @@
 
 			</p>
 			<p class="text-center text-condensedLight">Iniciar Sesion</p>
-			<form action="funciones/home.html" method="POST">
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				    <input class="mdl-textfield__input" type="text" id="userName">
-				    <label class="mdl-textfield__label" for="userName">Usuario</label>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				    <input class="mdl-textfield__input" type="password" id="pass">
-				    <label class="mdl-textfield__label" for="pass">Contraseña</label>
-				</div>
-				<button class="mdl-button mdl-js-button mdl-js-ripple-effect" style="color: #000000; margin: 0 auto; display: block;">
-					INGRESAR
-				</button>
+<form id="loginForm">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" id="userName" required>
+        <label class="mdl-textfield__label" for="userName">Usuario</label>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="password" id="pass" required>
+        <label class="mdl-textfield__label" for="pass">Contraseña</label>
+    </div>
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect" style="color: #000000; margin: 0 auto; display: block;">
+        INGRESAR
+    </button>
+</form>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita el envío del formulario tradicional
+        // Aquí puedes agregar la lógica de validación, si es necesario
+        window.location.href = 'funciones/Funciones.php'; // Redirige a la página deseada
+    });
+</script>
+
 			</form>
 		</div>
 	</div>
