@@ -2,6 +2,7 @@
 include_once './config/Database.php';
 include_once './models/Persona.php';
 
+
 class Personacontroller{
 private $Persona;
     
@@ -14,8 +15,8 @@ public function __construct() {
 //obtener todos los registros
 public function leer(){
     $stmt = $this->Persona->leer();
-    $personas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo json_encode($personas);
+    $Persona = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($Persona);
     
 }
 

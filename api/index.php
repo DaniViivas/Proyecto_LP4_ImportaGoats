@@ -14,7 +14,12 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 if ($resource === 'personas') {
     $controller = new PersonaController();
-} 
+
+    http_response_code(404); // Código de respuesta para recurso no encontrado
+    echo json_encode(["mensaje" => "Recurso no encontrado"]);
+    exit;
+}
+
 // Manejar la solicitud según el método HTTP
 switch ($method) {
     case 'GET': 
