@@ -3,7 +3,7 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
 include_once 'controllers/Personacontroller.php';
-include_once 'controllers/Productocontroller.php';
+
 
 // Obtener la entidad desde la URL (por ejemplo: 'personas' o 'productos')
 $uri = explode('/', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
@@ -14,13 +14,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 if ($resource === 'personas') {
     $controller = new PersonaController();
-} elseif ($resource === 'productos') {
-   
-    http_response_code(404); // Código de respuesta para recurso no encontrado
-    echo json_encode(["mensaje" => "Recurso no encontrado"]);
-    exit;
-}
-
+} 
 // Manejar la solicitud según el método HTTP
 switch ($method) {
     case 'GET': 
