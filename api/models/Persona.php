@@ -22,7 +22,7 @@ public function __construct($db){
 
 //LEER TODAS LAS PERSONAS
 public function leer(){    
-    $query = "CALL sp_leer_persona()";    
+    $query = "CALL sp_leer_personas()";    
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
     return $stmt;

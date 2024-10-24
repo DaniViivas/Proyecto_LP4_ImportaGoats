@@ -4,17 +4,18 @@ header("Content-Type: application/json");
 
 include_once 'controllers/Personacontroller.php';
 
-
-// Obtener la entidad desde la URL (por ejemplo: 'personas' o 'productos')
-$uri = explode('/', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-$resource = isset($uri[3]) ? $uri[3] : null; // Index  asume que tienes algo como /prueba_api1/index.php/{entidad}
+// Obtener la entidad desde la URL (por ejemplo: 'personas')
+$uri = explode('/', trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/'));
+$resource = isset($uri[3]) ? $uri[3] : null; // Asegúrate de ajustar el índice correctamente
 
 // Obtener el método HTTP (GET, POST, PUT, DELETE)
 $method = $_SERVER['REQUEST_METHOD'];
 
+// Verificar si el recurso es 'personas'
 if ($resource === 'personas') {
-    $controller = new PersonaController();
-
+    $controller = new Personacontroller(); // Instanciar el controlador
+} else {
+    // Si no es un recurso válido, devolver un error 404
     http_response_code(404); // Código de respuesta para recurso no encontrado
     echo json_encode(["mensaje" => "Recurso no encontrado"]);
     exit;
@@ -24,26 +25,25 @@ if ($resource === 'personas') {
 switch ($method) {
     case 'GET': 
         if (isset($_GET['id'])) {
-            $controller->obtener($_GET['id']);
+            $controller->obtener($_GET['id']); // Obtener un registro específico
         } else {
-            $controller->leer();
+            $controller->leer(); // Obtener todos los registros
         }
-            
         break;
 
     case 'POST':
         $data = json_decode(file_get_contents("php://input"));
-        $controller->crear($data);
+        $controller->crear($data); // Crear un nuevo registro
         break;
 
     case 'PUT':
         $data = json_decode(file_get_contents("php://input"));
-        $controller->actualizar($data);
+        $controller->actualizar($data); // Actualizar un registro
         break;
 
     case 'DELETE':
         if (isset($_GET['id'])) {
-            $controller->eliminar($_GET['id']);
+            $controller->eliminar($_GET['id']); // Eliminar un registro
         }
         break;
 
@@ -52,6 +52,3 @@ switch ($method) {
         echo json_encode(["mensaje" => "Método no soportado"]);
         break;
 }
-
-
-
