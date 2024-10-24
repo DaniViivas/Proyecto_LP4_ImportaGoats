@@ -1,0 +1,29 @@
+1. Identificar atributos de la tbl_persona y sus valores de entrada:
+
+id_persona_pk
+nombre
+apellido
+direccion
+correo_electronico
+telefono
+fecha_afiliacion
+direccion
+fecha_nacimiento
+usuario
+contraseña
+id_tipo_persona_fk  
+
+valores de entrada
+
+p_id_persona_pk
+p_nombre
+p_apellido
+p_direccion
+p_correo_electronico
+p_telefono
+p_fecha_afiliacion
+p_direccion
+p_fecha_nacimiento
+p_usuario
+p_contraseña
+p_id_tipo_persona_fk  
