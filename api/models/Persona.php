@@ -60,11 +60,6 @@ public function crear(){
 }
 
 
-
-
-
-
-
    
  // ACTUALIZAR UNA PERSONA
  public function actualizar() {

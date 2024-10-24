@@ -1,7 +1,4 @@
 <?php 
-
-    
-    
 include_once './config/Database.php';
 include_once './models/Persona.php';
 
@@ -41,7 +38,7 @@ public function crear($data){
    $this->Persona->fecha_nacimiento= $data->fecha_nacimiento;
    $this->Persona->usuario= $data->usuario;
    $this->Persona->contraseña= $data->contraseña;
-   $this->Persona->idtipo_persona_fk= $data->idtipo_persona_fk;
+   $this->Persona->id_tipo_persona_fk= $data->id_tipo_persona_fk;
 
    if($this->Persona->crear()){
     echo json_encode(array('message' => 'Persona Creada'));
@@ -52,7 +49,7 @@ public function crear($data){
 
 //Actualizar persona
 public function actualizar($data){
-    $this->Persona->idpersona= $data->idpersona;
+    $this->Persona->id_persona_pk= $data->id_persona_pk;
     $this->Persona->nombre= $data->nombre;
     $this->Persona->apellido= $data->apellido;
     $this->Persona->direccion= $data->direccion;
@@ -63,7 +60,7 @@ public function actualizar($data){
     $this->Persona->fecha_nacimiento= $data->fecha_nacimiento;  
     $this->Persona->usuario= $data->usuario;
     $this->Persona->contraseña= $data->contraseña;
-    $this->Persona->idtipo_persona_fk= $data->idtipo_persona_fk;
+    $this->Persona->id_tipo_persona_fk= $data->id_tipo_persona_fk;
 
     if($this->Persona->actualizar()){
         echo json_encode(array('message' => 'Persona Actualizada'));
@@ -74,7 +71,7 @@ public function actualizar($data){
 
 //ELIMINAR PERSONA
 public function eliminar($data){
-    $this->Persona->idpersona= $data->idpersona;
+    $this->Persona->id_persona_pk= $data->id_persona_pk;
     if($this->Persona->eliminar()){
         echo json_encode(array('message' => 'Persona Eliminada'));
        }else{
