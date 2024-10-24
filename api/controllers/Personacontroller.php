@@ -7,7 +7,7 @@ private $Persona;
     
 public function __construct() {
     $database = new Database();
-    $db = $database->conectar();
+    $db = $database->getConnection();
     $this->Persona = new Persona($db);
 }
 
@@ -20,10 +20,10 @@ public function leer(){
 }
 
 //obtener las personas por ID
-public function obtener($id){
+public function obtener($id) {
     $stmt = $this->Persona->obtener($id);
-    $persona = $stmt->fetch(PDO::FETCH_ASSOC);
-    echo json_encode($persona);
+    $Persona = $stmt->fetch(PDO::FETCH_ASSOC);
+    echo json_encode($Persona);
 }
 
 //crear una persona 
@@ -70,13 +70,13 @@ public function actualizar($data){
 }   
 
 //ELIMINAR PERSONA
-public function eliminar($data){
-    $this->Persona->id_persona_pk= $data->id_persona_pk;
-    if($this->Persona->eliminar()){
-        echo json_encode(array('message' => 'Persona Eliminada'));
-       }else{
-        echo json_encode(array('message' => 'Persona No Eliminada'));
-       }
+
+public function eliminar($id) {
+    if ($this->Persona->eliminar($id)) {
+        echo json_encode(["mensaje" => "Persona eliminada exitosamente."]);
+    } else {
+        echo json_encode(["mensaje" => "Error al eliminar la persona."]);
+    }
 }
 
 }

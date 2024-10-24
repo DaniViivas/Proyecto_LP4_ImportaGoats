@@ -29,10 +29,10 @@ public function leer(){
 }
 
 // OBTENER UNA PERSONA POR ID
-public function leer_una(){    
-    $query = "CALL sp_obtener_persona()";    
+public function obtener($id) {
+    $query = "CALL sp_obtener_persona(:p_id_persona_pk)";
     $stmt = $this->conn->prepare($query);
-    $stmt->bindParam(1, $this->id_persona_pk);
+    $stmt->bindParam(':p_id_persona_pk', $id);
     $stmt->execute();
     return $stmt;
 }
