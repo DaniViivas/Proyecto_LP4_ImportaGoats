@@ -13,6 +13,8 @@ usuario
 contraseña
 id_tipo_persona_fk  
 
+
+
 valores de entrada
 
 p_id_persona_pk
