@@ -38,7 +38,7 @@ switch ($method) {
 
     case 'PUT':
         $data = json_decode(file_get_contents("php://input"));
-        $controller->actualizar($data); // Actualizar un registro
+        $controller->actualizar($data);
         break;
 
     case 'DELETE':
