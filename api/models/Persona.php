@@ -66,12 +66,6 @@ public function crear(){
     }
 }
 
-
-
-
-
-
-
    
  // ACTUALIZAR UNA PERSONA
  public function actualizar() {
@@ -111,10 +105,14 @@ public function crear(){
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':p_id_persona_pk', $id);
 
-        if ($stmt->execute()) {
+        try {
+            $stmt->execute();
             return true;
+        } catch (PDOException $e) {
+            // Manejo del error, puedes usar $e->getMessage() para obtener detalles del error
+            echo "Error al ejecutar la consulta: " . $e->getMessage();
+            return false;
         }
-        return false;
     }
 
   

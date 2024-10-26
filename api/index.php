@@ -3,6 +3,7 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
 include_once 'controllers/Personacontroller.php';
+include_once 'controllers/Productocontroller.php';
 
 // Obtener la entidad desde la URL (por ejemplo: 'personas')
 $uri = explode('/', trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/'));
@@ -11,15 +12,20 @@ $resource = isset($uri[3]) ? $uri[3] : null; // Asegúrate de ajustar el índice
 // Obtener el método HTTP (GET, POST, PUT, DELETE)
 $method = $_SERVER['REQUEST_METHOD'];
 
-// Verificar si el recurso es 'personas'
+
 if ($resource === 'personas') {
-    $controller = new Personacontroller(); // Instanciar el controlador
+    $controller = new Personacontroller(); // Instanciar el controlador de personas
+
+} elseif ($resource === 'productos') {
+    $controller = new Productocontroller(); // Instanciar el controlador de productos
+
 } else {
     // Si no es un recurso válido, devolver un error 404
     http_response_code(404); // Código de respuesta para recurso no encontrado
     echo json_encode(["mensaje" => "Recurso no encontrado"]);
     exit;
 }
+
 
 // Manejar la solicitud según el método HTTP
 switch ($method) {
