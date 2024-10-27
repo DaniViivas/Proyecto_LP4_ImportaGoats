@@ -29,7 +29,7 @@ if ($resource === 'personas') {
 
 // Manejar la solicitud según el método HTTP
 switch ($method) {
-    case 'GET': 
+    case 'GET':
         if (isset($_GET['id'])) {
             $controller->obtener($_GET['id']); // Obtener un registro específico
         } else {
@@ -37,10 +37,18 @@ switch ($method) {
         }
         break;
 
-    case 'POST':
-        $data = json_decode(file_get_contents("php://input"));
-        $controller->crear($data); // Crear un nuevo registro
-        break;
+        case 'POST':
+            $data = (object)$_REQUEST; // Cambiado a $_REQUEST para capturar los datos de form-data
+            $file = isset($_FILES['ruta_imagen']) ? $_FILES['ruta_imagen'] : null; // Asegura que se pasa el archivo
+        
+            // Combinar datos y archivo en un solo objeto
+            $combinedData = (object)[
+                'data' => $data,
+                'file' => $file,
+            ];
+        
+            $controller->crear($combinedData);
+            break;
 
     case 'PUT':
         $data = json_decode(file_get_contents("php://input"));
